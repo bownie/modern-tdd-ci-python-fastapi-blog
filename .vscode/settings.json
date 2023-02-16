@@ -1,0 +1,5 @@
+{
+    "python.linting.enabled": true,
+    "pylint.args": ["--disable", "redefined-outer-name",
+                    "--disable", "missing-function-docstring"]
+}

@@ -1,0 +1,7 @@
+pydantic[email]
+pytest
+jsonschema
+fastapi
+uvicron[standard]
+httpx
+requests
