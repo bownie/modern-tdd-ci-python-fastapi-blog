@@ -50,11 +50,9 @@ def test_create_article(client):
         "/create-article/",
         data=json.dumps(
             data
-        ),
-        content_type=CONTENT_TYPE,
-    )
+        ))
 
-    validate_payload(response.json, "Article.json")
+    validate_payload(response.json(), "Article.json")
 
 def test_get_article(client):
     """
@@ -67,12 +65,9 @@ def test_get_article(client):
         title=TITLE,
         content="Super extra awesome article"
     ).save()
-    response = client.get(
-        f"/article/{article.id}/",
-        content_type=CONTENT_TYPE,
-    )
+    response = client.get(f"/article/{article.id}/")
 
-    validate_payload(response.json, "Article.json")
+    validate_payload(response.json(), "Article.json")
 
 
 def test_list_articles(client):
@@ -86,12 +81,9 @@ def test_list_articles(client):
         title=TITLE,
         content="Super extra awesome article"
     ).save()
-    response = client.get(
-        "/article-list/",
-        content_type=CONTENT_TYPE,
-    )
+    response = client.get("/article-list/")
 
-    validate_payload(response.json, "ArticleList.json")
+    validate_payload(response.json(), "ArticleList.json")
 
 @pytest.mark.parametrize(
     "data",
@@ -123,12 +115,10 @@ def test_create_article_bad_request(client, data):
         "/create-article/",
         data=json.dumps(
             data
-        ),
-        content_type=CONTENT_TYPE,
-    )
+        ))
 
     assert response.status_code == 400
-    assert response.json is not None
+    assert response.json() is not None
 
 @pytest.mark.e2e
 def test_create_list_get():

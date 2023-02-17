@@ -4,7 +4,22 @@ Expanding on the code examples in the article "Modern Test-Driven Development in
 
 https://testdriven.io/blog/modern-tdd/
 
-and from the 
+
+# Running with uvicorn
+
+Set PYTHONPATH to top level directory:
+
+$ export PYTHONPATH=`pwd`
+
+Run from blog directory:
+
+$ uvicorn app:app --reload
+
+Initialise the database from top-level:
+
+$ python blog/init_db.py
+
+
 
 # Background
 

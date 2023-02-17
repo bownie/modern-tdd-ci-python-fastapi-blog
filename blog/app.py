@@ -1,15 +1,60 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, status
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
+
+from pydantic import ValidationError, BaseModel
+
+from blog.commands import CreateArticleCommand, AlreadyExists
+from blog.queries import GetArticleByIDQuery, ListArticlesQuery
 
 app = FastAPI()
 
-
 @app.get("/")
-def read_root():
+async def root():
     return {"Hello": "World"}
 
+#@app.get("/create-article/")
+#def create_article():
+#    return {"Wibbly", "Pig"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+#@app.get("/items/{item_id}")
+#def read_item(item_id: int, q: Union[str, None] = None):
+#    return {"item_id": item_id, "q": q}
+
+#@app.errorhandler(ValidationError)
+#def handle_validation_exception(error):
+##    response = jsonable_encoder(error.errors())
+#    response.status_code = 400
+#    return response
+
+#@app.exception_handler(ValidationError)
+#async def handle_validation_exception(request, exc):
+#    response = jsonable_encoder(exc.errors())
+#    return JSONResponse(content=response, status_code=400)
+
+class ArticleInput(BaseModel):
+    author: str
+    title: str
+    content: str
+
+@app.post("/create-article/")
+async def create_article(article: ArticleInput):
+    cmd = CreateArticleCommand(author=article.author, title=article.title, content=article.content)
+    result = cmd.execute()
+    return jsonable_encoder(result.dict())
+
+
+@app.get("/article/<article_id>/")
+async def get_article(article_id):
+    query = GetArticleByIDQuery(
+        id=article_id
+    )
+    return jsonable_encoder(query.execute().dict())
+
+@app.get("/article-list/")
+async def list_articles():
+    query = ListArticlesQuery()
+    records = [record.dict() for record in query.execute()]
+    return jsonable_encoder(records)
