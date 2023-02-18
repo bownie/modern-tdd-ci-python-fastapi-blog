@@ -1,12 +1,7 @@
-from typing import Union
-
-from fastapi import FastAPI, HTTPException, status
+from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
-from fastapi.responses import JSONResponse
-
-from pydantic import ValidationError, BaseModel
-
-from blog.commands import CreateArticleCommand, AlreadyExists
+from pydantic import BaseModel
+from blog.commands import CreateArticleCommand
 from blog.queries import GetArticleByIDQuery, ListArticlesQuery
 
 app = FastAPI()
