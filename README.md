@@ -1,5 +1,5 @@
-[![Run Python Tests](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/test.yml/badge.svg)](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/test.yml)
-[![Pylint](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/pylint.yml/badge.svg)](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/pylint.yml)
+[![Tests](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/test.yml/badge.svg)](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/test.yml)
+[![Linting](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/pylint.yml/badge.svg)](https://github.com/bownie/-modern-tdd-ci-python-fastapi-blog/actions/workflows/pylint.yml)
 
 # Modern TDD CI Python FastAPI example
 
