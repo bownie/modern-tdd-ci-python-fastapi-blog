@@ -2,6 +2,6 @@ pydantic[email]
 pytest
 jsonschema
 fastapi
-uvicron[standard]
+uvicorn[standard]
 httpx
 requests
