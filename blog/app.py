@@ -15,25 +15,6 @@ app = FastAPI()
 async def root():
     return {"Hello": "World"}
 
-#@app.get("/create-article/")
-#def create_article():
-#    return {"Wibbly", "Pig"}
-
-#@app.get("/items/{item_id}")
-#def read_item(item_id: int, q: Union[str, None] = None):
-#    return {"item_id": item_id, "q": q}
-
-#@app.errorhandler(ValidationError)
-#def handle_validation_exception(error):
-##    response = jsonable_encoder(error.errors())
-#    response.status_code = 400
-#    return response
-
-#@app.exception_handler(ValidationError)
-#async def handle_validation_exception(request, exc):
-#    response = jsonable_encoder(exc.errors())
-#    return JSONResponse(content=response, status_code=400)
-
 class ArticleInput(BaseModel):
     author: str
     title: str
@@ -46,7 +27,7 @@ async def create_article(article: ArticleInput):
     return jsonable_encoder(result.dict())
 
 
-@app.get("/article/<article_id>/")
+@app.get("/article/{article_id}/")
 async def get_article(article_id):
     query = GetArticleByIDQuery(
         id=article_id

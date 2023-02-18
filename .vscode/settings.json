@@ -1,5 +1,12 @@
 {
     "python.linting.enabled": true,
     "pylint.args": ["--disable", "redefined-outer-name",
-                    "--disable", "missing-function-docstring"]
+                    "--disable",
+                    "missing-function-docstring"
+                ],
+                "python.testing.pytestArgs": [
+                    "tests"
+                ],
+                "python.testing.unittestEnabled": false,
+                "python.testing.pytestEnabled": true
 }

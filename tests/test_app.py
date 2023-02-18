@@ -109,15 +109,15 @@ def test_create_article_bad_request(client, data):
     """
     GIVEN request data with invalid values or missing attributes
     WHEN endpoint /create-article/ is called
-    THEN it should return status 400
+    THEN it should return status 422
     """
     response = client.post(
         "/create-article/",
         data=json.dumps(
-            data
-        ))
+           data
+       ))
 
-    assert response.status_code == 400
+    assert response.status_code == 422
     assert response.json() is not None
 
 @pytest.mark.e2e
@@ -126,7 +126,7 @@ def test_create_list_get():
     urllib3.util.connection.HAS_IPV6 = False
 
     requests.post(
-        "http://localhost:5000/create-article/",
+        "http://localhost:8000/create-article/",
         timeout=5,
         json={
             "author": "john@doe.com",
@@ -136,7 +136,7 @@ def test_create_list_get():
     )
 
     response = requests.get(
-        "http://localhost:5000/article-list/",
+        "http://localhost:8000/article-list/",
         timeout=5
     )
 
@@ -145,7 +145,7 @@ def test_create_list_get():
     articles = response.json()
 
     response = requests.get(
-        f"http://localhost:5000/article/{articles[0]['id']}/",
+        f"http://localhost:8000/article/{articles[0]['id']}/",
         timeout=5
     )
 

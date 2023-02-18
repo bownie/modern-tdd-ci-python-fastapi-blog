@@ -35,7 +35,7 @@ You can use SQLite browser to view creation of tables and data [SQLite Browser] 
 
 In order to run full tests - run up the backend:
 
-$ FLASK_APP=blog/app.py python -m flask run
+$ python blog/run.py
 
 then ensure that the database is initialised:
 
