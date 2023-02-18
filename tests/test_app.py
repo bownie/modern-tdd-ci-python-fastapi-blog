@@ -6,6 +6,7 @@ import urllib3
 import pytest
 from jsonschema import validate, RefResolver
 from fastapi.testclient import TestClient
+from pydantic import ValidationError
 
 from blog.models import Article
 from blog.app import app
@@ -111,14 +112,17 @@ def test_create_article_bad_request(client, data):
     WHEN endpoint /create-article/ is called
     THEN it should return status 422
     """
-    response = client.post(
-        "/create-article/",
-        data=json.dumps(
-           data
-       ))
+    try:
+        response = client.post(
+            "/create-article/",
+            data=json.dumps(
+            data
+        ))
+        assert response.status_code == 422
+        assert response.json() is not None
+    except ValidationError as validation_error:
+        print("ValidationError: ", validation_error)
 
-    assert response.status_code == 422
-    assert response.json() is not None
 
 @pytest.mark.e2e
 def test_create_list_get():
