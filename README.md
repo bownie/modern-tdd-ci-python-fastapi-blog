@@ -3,26 +3,28 @@
 
 # Modern TDD CI Python FastAPI example
 
-Expanding on the code examples in the article "Modern Test-Driven Development in Python" by [jangia](https://github.com/jangia):
+Example of implementation of FastAPI with tests.
+
+This is expanding on the code examples in the article "Modern Test-Driven Development in Python" by [jangia](https://github.com/jangia) and migrating it to FastAPI from Flask. 
 
 https://testdriven.io/blog/modern-tdd/
 
 
 # Running with uvicorn
 
-Set PYTHONPATH to top level directory:
+TODO: Using the run rather than uvicorn
 
-$ export PYTHONPATH=`pwd`
+Set PYTHONPATH to top level directory and blog subdirectory:
 
-Run from blog directory:
+$ export PYTHONPATH=`pwd`:`pwd`/blog
+
+Run from top-level directory:
 
 $ uvicorn app:app --reload
 
-Initialise the database from top-level:
+How to initialise the database from top-level:
 
 $ python blog/init_db.py
-
-
 
 # Background
 

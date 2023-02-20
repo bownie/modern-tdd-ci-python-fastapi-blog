@@ -1,3 +1,4 @@
+from uvicorn import run
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel
@@ -34,3 +35,6 @@ async def list_articles():
     query = ListArticlesQuery()
     records = [record.dict() for record in query.execute()]
     return jsonable_encoder(records)
+
+if __name__ == "__main__":
+    run(app, host="localhost", port=8000)
